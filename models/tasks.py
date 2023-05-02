@@ -1,12 +1,13 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, Date
 from models.database import db
 
 
 class Task(db.Model):
     __tablename__ = 'tasks'
     
-    name: str = Column(String(50), primary_key=True, unique=True)
-    deadline: DateTime = Column(DateTime)
+    id: int = Column(Integer, primary_key=True, unique=True, autoincrement=True)
+    name: str = Column(String(50))
+    deadline: Date = Column(Date)
     importance: int = Column(Integer)
 
     def to_json(self):
@@ -14,5 +15,4 @@ class Task(db.Model):
                 'deadline': self.deadline,
                 'importance': self.importance}
     
-    def __repr__(self):
-        return f'NAME: {self.name} -- IMPORTANCE: {self.importance}'
+    

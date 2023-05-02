@@ -8,6 +8,26 @@ def create_database(app: Flask) -> None:
     app.db = db
 
     with app.app_context():
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
 
+def db_commit(model: db.Model) -> None:
+    try:
+        db.session.add(model)
+        db.session.commit()
+    except:
+        db.session.rollback()
+
+def db_update(model: db.Model) -> None:
+    try:
+        db.session.merge(model)
+        db.session.commit()
+    except:
+        db.session.rollback()
+
+def db_delete(model: db.Model) -> None:
+    try:
+        db.session.delete(model)
+        db.session.commit()
+    except:
+        db.session.rollback()
