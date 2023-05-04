@@ -11,12 +11,15 @@ def create_database(app: Flask) -> None:
         # db.drop_all()
         db.create_all()
 
-def db_commit(model: db.Model) -> None:
+
+def db_commit(model: db.Model) -> bool:
     try:
         db.session.add(model)
         db.session.commit()
+        return True
     except:
         db.session.rollback()
+        return False
 
 def db_update(model: db.Model) -> None:
     try:

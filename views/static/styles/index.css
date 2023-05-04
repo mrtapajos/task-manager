@@ -1,0 +1,128 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --maincolor: #7289da;
+    --seccolor: #36393e;
+}
+
+body {
+    background-color: #424549;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+    color: #7289da;
+    font-style: italic;
+}
+
+#task-input {
+    flex-grow: 1;
+}
+
+#submit-btn {
+    background-color: var(--maincolor);
+    color: white;
+    border: none;
+    height: 100%;
+}
+
+.task-info > span {
+    display: flex;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.task-info label {
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.task-manager {
+    color: var(--maincolor);
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    gap: 16px;
+    font-weight: 800;
+}
+
+
+.task-manager input {
+    color: white;
+    padding: 4px;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 1px solid white;
+    background: none;
+    outline: none;
+}
+
+.task-manager input[type='date'], .task-manager input[type="number"] {
+    color: #7289da;
+}
+
+
+.task-list {
+    display: flex;
+    margin-top: 32px;
+}
+
+.task-list ul {
+    border-radius: 10px;
+    padding: 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.task-list li {
+    background-color: #7289da;
+    padding: 20px;
+    border-radius: 3px;
+    color: white;
+}
+
+.task-element {
+    background-color: var(--maincolor);
+    padding: 16px;
+    padding-right: 32px;
+    border-radius: 3px;
+    color: white;
+}
+
+.importance-1 {
+    border-right: 12px solid green;
+    background-color: var(--maincolor);
+    padding: 16px;
+    padding-right: 32px;
+    border-radius: 3px;
+    color: white;
+}
+
+.importance-2 {
+    border-right: 12px solid yellow;
+    background-color: var(--maincolor);
+    padding: 16px;
+    padding-right: 32px;
+    border-radius: 3px;
+    color: white;
+}
+
+.importance-3 {
+    border-right: 12px solid red;
+    background-color: var(--maincolor);
+    padding: 16px;
+    padding-right: 32px;
+    border-radius: 3px;
+    color: white;
+}

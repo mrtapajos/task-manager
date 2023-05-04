@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/index.css') }}"
+    />
+  </head>
+  <body>
+    <h1>TASKS</h1>
+
+    <form onsubmit="" id="task-form">
+      <div class="task-manager">
+        <div class="task-info">
+          <label for="task-name">Task Name:</label>
+          <input type="text" name="task-name" id="task-name" />
+
+          <div class="bonus-task-info">
+            <label for="task-deadline">Deadline:</label>
+            <input type="date" name="task-deadline" id="task-deadline" />
+
+            <label for="task-importance">Importance (between 1 and 3):</label>
+            <input
+              type="number"
+              name="task-importance"
+              id="task-importance"
+              max="3"
+            />
+          </div>
+        </div>
+
+        <input type="submit" value="ADD" id="submit-btn" />
+      </div>
+    </form>
+
+    <div class="task-list">
+      <ul>
+        {% for task in tasks %}
+        <div class="task-element importance-{{ task.importance }}">
+          <span class="name">{{task.name}}</span>
+          <br /><br />
+          <span class="deadline">{{task.deadline_view if task.deadline_view != None else '//'}}</span>
+        </div>
+        {%endfor%}
+      </ul>
+    </div>
+    <script src="{{ url_for('static', filename='js/task_form.js') }}"></script>
+  </body>
+</html>

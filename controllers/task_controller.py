@@ -6,13 +6,13 @@ from datetime import datetime
 
 
 # READ
-@app.route('/tasks', methods=['GET'])
+""" @app.route('/tasks', methods=['GET'])
 def all_tasks():
     tasks = Task.query.all()
     list_tasks = jsonify([task.name for task in tasks])
     response = make_response(list_tasks, HTTPStatus.OK)
     return response
-
+ """
 
 # CREATE
 @app.route('/tasks', methods=['POST'])
@@ -22,18 +22,33 @@ def add_task():
     # GETTING TASK VALUES
     task_id: int = task.get('id')
     task_name: str = task.get('name')
-    task_importance: str = task.get('importance')
+    task_importance: int = task.get('importance')
     task_deadline_str: str = task.get('deadline')
+
+    if not task_name or not task_importance or task_importance <= 0:
+        return make_response({"message": "INVALID TASK!"}, HTTPStatus.BAD_REQUEST)
+    
+    
     # CONVERSION (STRING TO DATE)
-    task_deadline_date = datetime.strptime(task_deadline_str, '%d/%m/%Y').date()
+    if task_deadline_str != '':
+        task_deadline_date = datetime.strptime(task_deadline_str, '%Y-%m-%d').date()
+    else:
+        task_deadline_date = None
+
 
     # CREATING NEW TASK OBJECT
     task: Task = Task(id=task_id, name=task_name, deadline=task_deadline_date, importance=task_importance)
     task: dict = {'name': task_name, 'deadline': task_deadline_date, 'importance': task_importance}
 
-    db_commit(Task(**task))
+    success = db_commit(Task(**task))
+
+    if success:
+        return make_response({'message': "Cadastrado com sucesso!"}, HTTPStatus.OK)
+    else:
+        return make_response({'message': "Houve um erro"}, HTTPStatus.BAD_REQUEST)
     
-    return make_response('FEITO!', HTTPStatus.OK)
+    
+    
     
 # UPDATE
 # PRECISO COLOCAR ID NA TABELA
