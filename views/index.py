@@ -2,6 +2,7 @@ from flask import current_app as app, render_template
 from models.tasks import Task
 
 
+# READ
 @app.route('/', methods=['GET'])
 def index():
     tasks = Task.query.all()

@@ -28,9 +28,11 @@ def db_update(model: db.Model) -> None:
     except:
         db.session.rollback()
 
-def db_delete(model: db.Model) -> None:
+def db_delete(model: db.Model) -> bool:
     try:
         db.session.delete(model)
         db.session.commit()
+        return True
     except:
         db.session.rollback()
+        return False

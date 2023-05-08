@@ -70,59 +70,60 @@ h1 {
     color: #7289da;
 }
 
+.list-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.list-row img {
+    height: 50px;
+}
+
+#delete-btn {
+    background: none;
+    border: none;
+}
 
 .task-list {
     display: flex;
     margin-top: 32px;
+    padding: 30px;
+    list-style: none;
+    gap: 24px;
 }
 
 .task-list ul {
-    border-radius: 10px;
-    padding: 30px;
-    list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
-.task-list li {
-    background-color: #7289da;
-    padding: 20px;
-    border-radius: 3px;
-    color: white;
-}
 
 .task-element {
     background-color: var(--maincolor);
     padding: 16px;
-    padding-right: 32px;
+    padding-bottom: 24px;
     border-radius: 3px;
     color: white;
+    height: 40%;
+    width: 70%;
+}
+
+.task-element span {
+    display: block;
+    margin: 8px;
 }
 
 .importance-1 {
     border-right: 12px solid green;
-    background-color: var(--maincolor);
-    padding: 16px;
-    padding-right: 32px;
-    border-radius: 3px;
-    color: white;
+    
 }
 
 .importance-2 {
     border-right: 12px solid yellow;
-    background-color: var(--maincolor);
-    padding: 16px;
-    padding-right: 32px;
-    border-radius: 3px;
-    color: white;
 }
 
 .importance-3 {
     border-right: 12px solid red;
-    background-color: var(--maincolor);
-    padding: 16px;
-    padding-right: 32px;
-    border-radius: 3px;
-    color: white;
 }

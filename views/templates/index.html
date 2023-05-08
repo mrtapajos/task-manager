@@ -23,7 +23,7 @@
             <label for="task-deadline">Deadline:</label>
             <input type="date" name="task-deadline" id="task-deadline" />
 
-            <label for="task-importance">Importance (between 1 and 3):</label>
+            <label for="task-importance">Importance (1 - 3):</label>
             <input
               type="number"
               name="task-importance"
@@ -40,14 +40,27 @@
     <div class="task-list">
       <ul>
         {% for task in tasks %}
-        <div class="task-element importance-{{ task.importance }}">
-          <span class="name">{{task.name}}</span>
-          <br /><br />
-          <span class="deadline">{{task.deadline_view if task.deadline_view != None else '//'}}</span>
+        <div class="list-row">
+          <div class="task-element importance-{{ task.importance }}">
+            <span id="task-name">{{task.name}}</span>
+            <span id="task-deadline"
+              >{{task.deadline_view if task.deadline_view != None else
+              '//'}}</span
+            >
+          </div>
+            <form id="delete-form" action="{{ url_for('delete_task', id=task.id) }}" method="post">
+              <button id="delete-btn" type="submit">
+                <img
+                  src="{{ url_for('static', filename='img/trash-can.png')}}"
+                  alt="trash can"
+                />
+              </button>
+            </form>
         </div>
         {%endfor%}
       </ul>
     </div>
     <script src="{{ url_for('static', filename='js/task_form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/button.js')}}"></script>
   </body>
 </html>
