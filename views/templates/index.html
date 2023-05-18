@@ -12,7 +12,6 @@
   </head>
   <body>
     <h1>TASKS</h1>
-
     <form onsubmit="" id="task-form">
       <div class="task-manager">
         <div class="task-info">
@@ -36,7 +35,6 @@
         <input type="submit" value="ADD" id="submit-btn" />
       </div>
     </form>
-
     <div class="task-list">
       <ul>
         {% for task in tasks %}
@@ -48,19 +46,27 @@
               '//'}}</span
             >
           </div>
-            <form id="delete-form" action="{{ url_for('delete_task', id=task.id) }}" method="post">
-              <button id="delete-btn" type="submit">
-                <img
-                  src="{{ url_for('static', filename='img/trash-can.png')}}"
-                  alt="trash can"
-                />
-              </button>
-            </form>
+          <form
+            id="delete-form"
+            action="{{ url_for('delete_task', id=task.id) }}"
+            method="post"
+          >
+            <button id="delete-btn" type="submit">
+              <img
+                src="{{ url_for('static', filename='img/trash-can.png') }}"
+                alt="trash can"
+              />
+            </button>
+          </form>
+          <a href="{{ url_for('edit_task', edit_id=task.id) }}"
+            ><img
+              src="{{ url_for('static', filename='img/pencil.png') }}"
+              alt="pencil icon"
+          /></a>
         </div>
         {%endfor%}
       </ul>
     </div>
     <script src="{{ url_for('static', filename='js/task_form.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/button.js')}}"></script>
   </body>
 </html>

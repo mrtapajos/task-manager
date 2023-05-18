@@ -86,6 +86,10 @@ h1 {
     border: none;
 }
 
+#delete-btn:hover {
+    cursor: pointer;
+}
+
 .task-list {
     display: flex;
     margin-top: 32px;

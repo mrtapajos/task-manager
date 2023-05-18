@@ -36,12 +36,12 @@ def add_task():
     task: Task = Task(name=task_name, deadline=task_deadline_date, importance=task_importance)
     task: dict = {'name': task_name, 'deadline': task_deadline_date, 'importance': task_importance}
 
-    db_action = db_commit(Task(**task))
+    db_action = db_commit(Task(**task)) # (name: task_name, deadline: task_deadline_date, importance: task_importance)
 
     if db_action:
-        return make_response({'message': "Cadastrado com sucesso!"}, HTTPStatus.OK)
+        return make_response({'message': "Task successfully added!"}, HTTPStatus.OK)
     else:
-        return make_response({'message': "Houve um erro"}, HTTPStatus.BAD_REQUEST)
+        return make_response({'message': "Error adding task!"}, HTTPStatus.BAD_REQUEST)
     
     
 
@@ -57,3 +57,4 @@ def delete_task(id):
     
     else:
         return make_response({"message": 'ID não encontrado!'}, HTTPStatus.NOT_FOUND)
+    

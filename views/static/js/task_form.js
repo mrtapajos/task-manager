@@ -28,4 +28,3 @@ form.addEventListener("submit", async (event) => {
 
   location.reload();
 });
-

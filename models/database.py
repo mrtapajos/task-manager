@@ -21,12 +21,15 @@ def db_commit(model: db.Model) -> bool:
         db.session.rollback()
         return False
 
-def db_update(model: db.Model) -> None:
+def db_update(model: db.Model) -> bool:
     try:
-        db.session.merge(model)
+        print('Tentando atualização!')
         db.session.commit()
-    except:
+        return True
+    except Exception as error:
         db.session.rollback()
+        print(error)
+        return False
 
 def db_delete(model: db.Model) -> bool:
     try:

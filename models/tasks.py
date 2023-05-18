@@ -15,3 +15,6 @@ class Task(db.Model):
                 'deadline': self.deadline,
                 'importance': self.importance}
     
+    def __repr__(self):
+        return f'Task: {self.name} // Importance: {self.importance}'
+    
