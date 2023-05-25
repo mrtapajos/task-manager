@@ -17,6 +17,7 @@ def add_task():
     task_importance: int = task.get('importance')
     task_deadline_str: str = task.get('deadline')
 
+    # VALIDATING NAME & IMPORTANCE
     if not task_name or not task_importance or task_importance <= 0:
         return make_response({"message": "INVALID TASK!"}, HTTPStatus.BAD_REQUEST)
     
@@ -24,7 +25,7 @@ def add_task():
     # DATE CONDITIONS
     today: date = date.today()
 
-    if task_deadline_str != '':
+    if task_deadline_str != '': # CAN'T BE NONE
         task_deadline_date = datetime.strptime(task_deadline_str, '%Y-%m-%d').date()
         if task_deadline_date < today:
             return make_response({"message": "Date must be after today or today!"}, HTTPStatus.BAD_REQUEST)
